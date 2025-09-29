@@ -1,0 +1,50 @@
+---
+title: "mirDIP: R Client for the mirDIP Web API"
+author: "Jaime"
+output:
+  BiocStyle::html_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{mirDIP: R Client for the mirDIP Web API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r setup}
+library(BiocStyle)
+library(mirDIP)
+```
+
+## Unidirectional search on genes
+
+```{r}
+# res <- unidirectionalSearchOnGenes("AKAP17A,AKR1C2", "Very High")
+# lst <- makeMap(res)
+# str(lst)
+```
+
+## Unidirectional search on microRNAs
+
+```{r}
+# res <- unidirectionalSearchOnMicroRNAs("hsa-miR-603,hsa-let-7a-3p", "High")
+# lst <- makeMap(res)
+# str(lst)
+```
+
+## Bidirectional search
+
+```{r}
+# res <- bidirectionalSearch(
+#   geneSymbols = "AKAP17A,APP",
+#   microRNAs = "hsa-miR-603",
+#   minimumScore = "Very High",
+#   sources = "TargetScan_v7_2",
+#   occurrances = 2
+# )
+# lst <- makeMap(res)
+# str(lst)
+```

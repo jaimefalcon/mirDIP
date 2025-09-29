@@ -1,0 +1,22 @@
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# R build
+.DS_Store
+.Rbuildignore
+.Rproj.user/
+inst/doc/
+.vscode/
+.Rproj*
+
+# pkg artifacts
+.Rcheck/
+*.tar.gz
+
+# vignettes
+vignettes/*.html
+vignettes/*.pdf
+vignettes/*.R

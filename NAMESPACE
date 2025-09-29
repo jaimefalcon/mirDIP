@@ -1,0 +1,8 @@
+export(unidirectionalSearchOnGenes)
+export(unidirectionalSearchOnMicroRNAs)
+export(bidirectionalSearch)
+export(makeMap)
+export(setMirDIPBaseUrl)
+importFrom(httr, POST)
+importFrom(httr, content)
+importFrom(httr, status_code)
