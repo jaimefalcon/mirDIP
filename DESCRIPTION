@@ -4,8 +4,7 @@ Title: R Client for the mirDIP Web API
 Version: 0.99.0
 Authors@R: c(
     person(given = "Jaime", family = "Falcon", role = c("aut", "cre"), 
-           email = "jaime.falcon@example.com", comment = c(ORCID = "0000-0000-0000-0000"))
-)
+           email = "jaime.falcon@example.com", comment = c(ORCID = "0000-0000-0000-0000")))
 Description: A lightweight R client to query the mirDIP web service
     for unidirectional and bidirectional searches of gene symbols and
     microRNAs. The mirDIP database provides comprehensive microRNA-target
