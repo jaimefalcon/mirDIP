@@ -7,7 +7,7 @@ Authors@R: c(
            email = "jaime.falcon@example.com", comment = c(ORCID = "0000-0000-0000-0000")))
 Description: A lightweight R client to query the mirDIP web service
     for unidirectional and bidirectional searches of gene symbols and
-    microRNAs. The mirDIP database provides comprehensive microRNA-target
+    miRNAs. The mirDIP database provides comprehensive miRNA-target
     interactions with confidence scores. This package provides convenient
     R functions to query the API and parse responses into R data structures.
 License: MIT + file LICENSE
@@ -23,7 +23,7 @@ Suggests:
     rmarkdown,
     BiocStyle,
     BiocManager
-biocViews: Software, GeneTarget, MicroRNA, Network, DataImport
+biocViews: Software, GeneTarget, miRNA, Network, DataImport
 VignetteBuilder: knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
