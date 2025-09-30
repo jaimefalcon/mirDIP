@@ -42,11 +42,21 @@ setMirDIPBaseUrl <- function(url) {
 
 #' Unidirectional search on gene symbols
 #'
+#' Search for microRNA targets of specified gene symbols using the mirDIP API.
+#' Returns microRNAs that target the provided genes with the specified confidence level.
+#'
 #' @param geneSymbols character scalar of comma-delimited gene symbols (HUGO approved).
 #' @param minimumScore one of "Very High", "High", "Medium", "Low".
 #' @return `httr::response` object. Use `makeMap()` to parse.
 #' @examples
-#' # res <- unidirectionalSearchOnGenes("AKAP17A,AKR1C2", "Very High")
+#' \dontrun{
+#' # Search for microRNAs targeting specific genes
+#' res <- unidirectionalSearchOnGenes("AKAP17A,AKR1C2", "Very High")
+#' if (httr::status_code(res) == 200) {
+#'     results <- makeMap(res)
+#'     print(results[["results_size"]])
+#' }
+#' }
 #' @export
 unidirectionalSearchOnGenes <- function(geneSymbols, minimumScore) {
     stopifnot(is.character(geneSymbols), length(geneSymbols) == 1)
@@ -63,11 +73,21 @@ unidirectionalSearchOnGenes <- function(geneSymbols, minimumScore) {
 
 #' Unidirectional search on microRNAs
 #'
+#' Search for gene targets of specified microRNAs using the mirDIP API.
+#' Returns genes that are targeted by the provided microRNAs with the specified confidence level.
+#'
 #' @param microRNAs character scalar of comma-delimited microRNAs.
 #' @param minimumScore one of "Very High", "High", "Medium", "Low".
 #' @return `httr::response` object. Use `makeMap()` to parse.
 #' @examples
-#' # res <- unidirectionalSearchOnMicroRNAs("hsa-miR-603,hsa-let-7a-3p", "High")
+#' \dontrun{
+#' # Search for genes targeted by specific microRNAs
+#' res <- unidirectionalSearchOnMicroRNAs("hsa-miR-603,hsa-let-7a-3p", "High")
+#' if (httr::status_code(res) == 200) {
+#'     results <- makeMap(res)
+#'     print(results[["results_size"]])
+#' }
+#' }
 #' @export
 unidirectionalSearchOnMicroRNAs <- function(microRNAs, minimumScore) {
     stopifnot(is.character(microRNAs), length(microRNAs) == 1)
@@ -84,6 +104,9 @@ unidirectionalSearchOnMicroRNAs <- function(microRNAs, minimumScore) {
 
 #' Bidirectional search on gene symbols and microRNAs
 #'
+#' Search for interactions between specified gene symbols and microRNAs using the mirDIP API.
+#' Returns confirmed interactions that meet the specified confidence and source requirements.
+#'
 #' @param geneSymbols character scalar, comma-delimited gene symbols.
 #' @param microRNAs character scalar, comma-delimited microRNAs.
 #' @param minimumScore one of "Very High", "High", "Medium", "Low".
@@ -91,7 +114,14 @@ unidirectionalSearchOnMicroRNAs <- function(microRNAs, minimumScore) {
 #' @param occurrances integer, 1-24, minimum number of sources.
 #' @return `httr::response` object. Use `makeMap()` to parse.
 #' @examples
-#' # res <- bidirectionalSearch("AKAP17A,APP", "hsa-miR-603", "Very High", "TargetScan_v7_2", 2)
+#' \dontrun{
+#' # Search for interactions between genes and microRNAs
+#' res <- bidirectionalSearch("AKAP17A,APP", "hsa-miR-603", "Very High", "TargetScan_v7_2", 2)
+#' if (httr::status_code(res) == 200) {
+#'     results <- makeMap(res)
+#'     print(results[["results_size"]])
+#' }
+#' }
 #' @export
 bidirectionalSearch <- function(geneSymbols, microRNAs, minimumScore, sources, occurrances) {
     stopifnot(is.character(geneSymbols), length(geneSymbols) == 1)
@@ -146,7 +176,14 @@ bidirectionalSearch <- function(geneSymbols, microRNAs, minimumScore, sources, o
 #' @param res An `httr::response` returned by a query function.
 #' @return Named list of fields including `generated_at`, `results_size`, `results`, etc.
 #' @examples
-#' # lst <- makeMap(res)
+#' \dontrun{
+#' # Parse API response
+#' res <- unidirectionalSearchOnGenes("AKAP17A", "High")
+#' if (httr::status_code(res) == 200) {
+#'     lst <- makeMap(res)
+#'     print(names(lst))
+#' }
+#' }
 #' @export
 makeMap <- function(res) {
     txt <- httr::content(res, "text")

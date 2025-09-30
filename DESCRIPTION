@@ -1,18 +1,20 @@
 Package: mirDIP
 Type: Package
 Title: R Client for the mirDIP Web API
-Version: 0.1.0
+Version: 0.99.0
 Authors@R: c(
-    person(given = "Jaime", family = "User", role = c("aut", "cre"), email = "you@example.com")
+    person(given = "Jaime", family = "Falcon", role = c("aut", "cre"), 
+           email = "jaime.falcon@example.com", comment = c(ORCID = "0000-0000-0000-0000"))
 )
 Description: A lightweight R client to query the mirDIP web service
     for unidirectional and bidirectional searches of gene symbols and
-    microRNAs. Provides helpers to parse responses into convenient
-    R structures.
+    microRNAs. The mirDIP database provides comprehensive microRNA-target
+    interactions with confidence scores. This package provides convenient
+    R functions to query the API and parse responses into R data structures.
 License: MIT + file LICENSE
 URL: https://github.com/jaimefalcon/mirDIP-R
 BugReports: https://github.com/jaimefalcon/mirDIP-R/issues
-Depends: R (>= 3.5)
+Depends: R (>= 4.0)
 Imports:
     httr,
     utils
@@ -20,10 +22,12 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    BiocStyle
+    BiocStyle,
+    BiocManager
 biocViews: Software, GeneTarget, MicroRNA, Network, DataImport
 VignetteBuilder: knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Config/testthat/edition: 3
+SystemRequirements: Internet connection for API access

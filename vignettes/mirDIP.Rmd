@@ -1,9 +1,11 @@
 ---
 title: "mirDIP: R Client for the mirDIP Web API"
-author: "Jaime"
+author: "Jaime Falcon"
+date: "`r Sys.Date()`"
 output:
   BiocStyle::html_document:
     toc: true
+    toc_float: true
 vignette: >
   %\VignetteIndexEntry{mirDIP: R Client for the mirDIP Web API}
   %\VignetteEngine{knitr::rmarkdown}
@@ -19,32 +21,88 @@ library(BiocStyle)
 library(mirDIP)
 ```
 
+# Introduction
+
+The `mirDIP` package provides an R client for the mirDIP (microRNA Data Integration Portal) web API. mirDIP is a comprehensive database of microRNA-target interactions with confidence scores from multiple prediction algorithms.
+
+This package allows you to:
+
+- Search for microRNAs targeting specific genes
+- Search for genes targeted by specific microRNAs  
+- Perform bidirectional searches for confirmed interactions
+- Parse API responses into convenient R data structures
+
+# Installation
+
+```{r eval=FALSE}
+# Install from GitHub
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("jaimefalcon/mirDIP-R")
+```
+
+# Basic Usage
+
 ## Unidirectional search on genes
 
-```{r}
-# res <- unidirectionalSearchOnGenes("AKAP17A,AKR1C2", "Very High")
-# lst <- makeMap(res)
-# str(lst)
+Search for microRNAs that target specific gene symbols:
+
+```{r eval=FALSE}
+# Search for microRNAs targeting specific genes
+res <- unidirectionalSearchOnGenes("AKAP17A,AKR1C2", "Very High")
+if (httr::status_code(res) == 200) {
+    results <- makeMap(res)
+    cat("Found", results[["results_size"]], "interactions\n")
+    cat("Results:\n", results[["results"]])
+}
 ```
 
 ## Unidirectional search on microRNAs
 
-```{r}
-# res <- unidirectionalSearchOnMicroRNAs("hsa-miR-603,hsa-let-7a-3p", "High")
-# lst <- makeMap(res)
-# str(lst)
+Search for genes targeted by specific microRNAs:
+
+```{r eval=FALSE}
+# Search for genes targeted by specific microRNAs
+res <- unidirectionalSearchOnMicroRNAs("hsa-miR-603,hsa-let-7a-3p", "High")
+if (httr::status_code(res) == 200) {
+    results <- makeMap(res)
+    cat("Found", results[["results_size"]], "interactions\n")
+}
 ```
 
 ## Bidirectional search
 
+Search for confirmed interactions between genes and microRNAs:
+
+```{r eval=FALSE}
+# Search for interactions between genes and microRNAs
+res <- bidirectionalSearch(
+    geneSymbols = "AKAP17A,APP",
+    microRNAs = "hsa-miR-603",
+    minimumScore = "Very High",
+    sources = "TargetScan_v7_2",
+    occurrances = 2
+)
+if (httr::status_code(res) == 200) {
+    results <- makeMap(res)
+    cat("Found", results[["results_size"]], "interactions\n")
+}
+```
+
+# Configuration
+
+You can configure the API base URL if needed:
+
+```{r eval=FALSE}
+# Get current base URL
+getMirDIPBaseUrl()
+
+# Set custom base URL (for development servers)
+setMirDIPBaseUrl("http://ophid.utoronto.ca/mirDIP")
+```
+
+# Session Info
+
 ```{r}
-# res <- bidirectionalSearch(
-#   geneSymbols = "AKAP17A,APP",
-#   microRNAs = "hsa-miR-603",
-#   minimumScore = "Very High",
-#   sources = "TargetScan_v7_2",
-#   occurrances = 2
-# )
-# lst <- makeMap(res)
-# str(lst)
+sessionInfo()
 ```
