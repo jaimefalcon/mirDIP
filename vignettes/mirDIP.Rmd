@@ -38,7 +38,7 @@ This package allows you to:
 # Install from GitHub
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install("jaimefalcon/mirDIP-R")
+BiocManager::install("jaimefalcon/mirDIP")
 ```
 
 # Basic Usage

@@ -12,8 +12,8 @@ Description: A lightweight R client to query the mirDIP web service
     interactions with confidence scores. This package provides convenient
     R functions to query the API and parse responses into R data structures.
 License: MIT + file LICENSE
-URL: https://github.com/jaimefalcon/mirDIP-R
-BugReports: https://github.com/jaimefalcon/mirDIP-R/issues
+URL: https://github.com/jaimefalcon/mirDIP
+BugReports: https://github.com/jaimefalcon/mirDIP/issues
 Depends: R (>= 4.0)
 Imports:
     httr,

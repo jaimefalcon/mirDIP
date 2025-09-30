@@ -3,15 +3,14 @@
 R Client for the mirDIP Web API.
 
 <!-- badges: start -->
-![R-CMD-check](https://github.com/jaimefalcon/mirDIP-R/actions/workflows/R-CMD-check.yaml/badge.svg)
-![pkgdown](https://github.com/jaimefalcon/mirDIP-R/actions/workflows/pkgdown.yaml/badge.svg)
+![R-CMD-check](https://github.com/jaimefalcon/mirDIP/actions/workflows/R-CMD-check.yaml/badge.svg)
 <!-- badges: end -->
 
 ## Installation
 
 ```r
 # install.packages("devtools")
-devtools::install_github("jaimefalcon/mirDIP-R")
+devtools::install_github("jaimefalcon/mirDIP")
 ```
 
 ## Usage
